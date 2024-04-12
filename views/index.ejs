@@ -1,0 +1,38 @@
+<%- include('./partials/header.ejs') %>
+
+  <h1 class="bg-black-800 text-white text-4xl text-center m-3">My todos</h1>
+
+  <form action="/title/new" method="post" class="max-w-md mx-auto my-5">
+    <div class="relative z-0 w-full mb-5 group">
+      <input type="text" name="title" id="title"
+        class="block py-2.5 px-0 w-full text-sm text-white  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-amber-50 focus:outline-none focus:ring-0 focus:border-amber-50  peer"
+        placeholder=" " required />
+      <label for="title"
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-amber-50  peer-focus:dark:text-amber-50  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+    </div>
+
+    <button
+      class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded text-sm px-5 py-2.5 text-center block mx-auto">Add
+      Title</button>
+  </form>
+
+
+  <h2 class="text-2xl text-left font-bold text-amber-50 my-5 ml-10 text-center">My Todos</h2>
+
+  <div class="mx-auto w-[80%] flex flex-col items-center gap-5">
+
+    <% for (let todo of todos){ %>
+      <div class="text-amber-50 w-[80%] border border-gray-200 rounded p-1 flex gap-3 justify-between">
+        <a class="flex-1 text-2xl p-1 border rounded-md border-gray-700" href="/todos/<%= todo._id %>">
+          <%= todo.title %>
+        </a>
+        <form action="/<%= todo._id %>?_method=delete" method="post" class="flex gap-2 text-2xl">
+          <button>🗑️</button>
+        </form>
+      </div>
+      <% } %>
+
+        <!--  -->
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
